@@ -1,9 +1,2 @@
-module UserAuth
-
-    class Session < ActiveRecord::Base
-    end
-    
-    class User < ActiveRecord::Base
-    end
-
-end
+require "user_auth/session.rb"
+require "user_auth/user.rb"
