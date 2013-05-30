@@ -7,8 +7,8 @@ require "user_auth/version"
 Gem::Specification.new do |s|
   s.name        = "user_auth"
   s.version     = UserAuth::VERSION
-  s.authors     = ["TODO: Your name"]
-  s.email       = ["TODO: Your email"]
+  s.authors     = ["Owen Mooney"]
+  s.email       = ["omooney@tcd.ie"]
   s.homepage    = "TODO"
   s.summary     = "TODO: Summary of UserAuth."
   s.description = "TODO: Description of UserAuth."
