@@ -4,7 +4,7 @@ module UserAuth
     class User < ActiveRecord::Base
         @@chars = ("a".."z").to_a + ("A".."Z").to_a + ("0".."9").to_a
         
-        self.create_salt
+        def self.create_salt
             new_pass = ""
             1.upto(20) { |i| new_pass << @@chars[rand(@@chars.length - 1)] }
             new_pass
