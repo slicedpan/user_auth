@@ -11,7 +11,7 @@ module UserAuth
         end
         
         def password=(plain_text)
-            self.password_salt = self.create_salt
+            self.password_salt = User.create_salt
             self.password_hash = Digest::SHA1.hexdigest(plain_text + self.password_salt)
         end
         
