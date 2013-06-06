@@ -10,14 +10,32 @@ module UserAuth
             new_pass
         end
         
+        def self.encrypt(plain_text, salt)
+            Digest::SHA1.hexdigest(plain_text + salt)
+        end
+        
         def password=(plain_text)
             self.password_salt = User.create_salt
-            self.password_hash = Digest::SHA1.hexdigest(plain_text + self.password_salt)
+            self.password_hash = User.encrypt(plain_text, self.password_salt)
         end
         
         def self.authenticate(username, password)
             u = User.where(:name => username).first
-        end        
+            if u.password_hash == User.encrypt(password, u.password_salt)
+                u
+            else 
+                nil
+            end
+        end
+        
+        def data
+            Marshal.load(self.user_data)
+        end
+        
+        def data=(d)
+            self.user_data = Marshal.dump(d)
+        end
+                
     end 
        
     def authenticate(username, password)
@@ -27,7 +45,7 @@ module UserAuth
             flash[:auth_message] = "Invalid username/password"
             return false
         end
-        session[:user_id] = u.id
+        session[:user_id] = @user.id
         session[:created_at] = DateTime.now
         session[:updated_at] = DateTime.now
         true
