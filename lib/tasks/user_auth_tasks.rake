@@ -16,7 +16,8 @@ namespace :user_auth do
             ActiveRecord::Base.establish_connection(base_config)
             con = ActiveRecord::Base.connection
             
-            query = <<-SQL delimiter $$
+            query = <<-SQL 
+                delimiter $$
                 CREATE TABLE `users` (
                   `user_id` int(11) NOT NULL AUTO_INCREMENT,
                   `password_salt` varchar(32) DEFAULT NULL,
