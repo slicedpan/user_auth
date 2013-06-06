@@ -16,7 +16,7 @@ namespace :user_auth do
             ActiveRecord::Base.establish_connection(base_config)
             con = ActiveRecord::Base.connection
             
-            con.execute("delimiter $$
+            query = <<-SQL delimiter $$
                 CREATE TABLE `users` (
                   `user_id` int(11) NOT NULL AUTO_INCREMENT,
                   `password_salt` varchar(32) DEFAULT NULL,
@@ -31,7 +31,9 @@ namespace :user_auth do
                   `session_data` longblob,
                   PRIMARY KEY (`session_id`)
                 ) ENGINE=InnoDB DEFAULT CHARSET=utf8$$
-                ")
+            SQL            
+            con.execute(query)
+            
         rescue Exception => error
             puts error.message                         
         end
