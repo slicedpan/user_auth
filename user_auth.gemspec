@@ -9,9 +9,9 @@ Gem::Specification.new do |s|
   s.version     = UserAuth::VERSION
   s.authors     = ["Owen Mooney"]
   s.email       = ["omooney@tcd.ie"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of UserAuth."
-  s.description = "TODO: Description of UserAuth."
+  s.homepage    = "git@github.com:slicedpan/UserAuth.git"
+  s.summary     = "A simple user authentication frameworked backed by db"
+  s.description = "A simple user authentication frameworked backed by db"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
   s.test_files = Dir["test/**/*"]
