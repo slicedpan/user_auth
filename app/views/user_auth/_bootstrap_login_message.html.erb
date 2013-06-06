@@ -1,0 +1,6 @@
+<% if auth %>
+    <div class="<%= auth.class %>">
+        <button type="button" class="close" data-dismiss="alert">&times</button>
+        <strong><%= auth.title %></strong>
+        <%= @auth.message %>
+<% end %>
