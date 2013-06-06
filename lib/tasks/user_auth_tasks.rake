@@ -3,7 +3,7 @@
 #   # Task goes here
 # end
 
-namespace :user_auth
+namespace :user_auth do
     task :create_tables do
         config = YAML.load_file('config/database.yml')[Rails.env]
         puts config.inspect
