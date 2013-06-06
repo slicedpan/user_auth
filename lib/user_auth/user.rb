@@ -21,6 +21,9 @@ module UserAuth
         
         def self.authenticate(username, password)
             u = User.where(:name => username).first
+            if u.nil? 
+                return u 
+            end
             if u.password_hash == User.encrypt(password, u.password_salt)
                 u
             else 
@@ -36,52 +39,6 @@ module UserAuth
             self.user_data = Marshal.dump(d)
         end
                 
-    end 
-       
-    def authenticate(username, password)
-        @user = User.authenticate(username, password)
-        if @user.nil?
-            flash[:auth] = {:status => "failure", :message => "Invalid username/password"}
-            return false
-        end
-        session[:user_id] = @user.id
-        session[:created_at] = DateTime.now
-        session[:updated_at] = DateTime.now
-        true
-    end
-    
-    def restore
-        uid = session[:user_id]
-        @user = User.where(:id => uid).first
-        if @user.nil?
-            flash[:auth] = {:status => "failure", :message => "Your session is invalid, try logging in again"}
-            return false
-        end
-        
-        if session[:created_at] < DateTime.now - 48.hours
-            flash[:auth] = {:status => "error", :message => "Your session has expired"}
-            return false
-        end
-        
-        if session[:updated_at] < DateTime.now - 10.minutes
-            flash[:auth_status] = {:status => "error", :message => "You have been logged out due to inactivity"}
-            return false
-        end
-        
-        session[:updated_at] = DateTime.now
-        true        
-    end
-    
-    def logout
-        session[:user_id] = nil
-        flash[:auth] = {:status => "logged_out", :message => "You have successfully logged out"}
-    end
-    
-    def can_view(model)
-        
-    end
-    
-    def can_edit(model)
-        
-    end
+    end       
+   
 end

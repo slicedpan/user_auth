@@ -1,6 +1,7 @@
 <% if auth %>
-    <div class="<%= auth.class %>">
+    <div class="alert <%= auth[:class] %>">
         <button type="button" class="close" data-dismiss="alert">&times</button>
-        <strong><%= auth.title %></strong>
-        <%= @auth.message %>
+        <h4><%= auth[:title] %></h4>
+        <p><%= @auth[:message] %></p>
+    </div>
 <% end %>
