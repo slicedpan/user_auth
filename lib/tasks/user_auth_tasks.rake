@@ -26,7 +26,6 @@ namespace :user_auth do
                   `user_data` longblob,
                   PRIMARY KEY (`user_id`)
                 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8$$
-                delimiter $$
                 CREATE TABLE `sessions` (
                   `session_id` varchar(32) NOT NULL,
                   `session_data` longblob,
