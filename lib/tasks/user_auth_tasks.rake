@@ -6,5 +6,6 @@
 namespace :user_auth
     task :create_tables do
         config = YAML.load_file('config/database.yml')[Rails.env]
+        puts config.inspect
     end    
 end
